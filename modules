@@ -1,0 +1,1 @@
+modprobe snd-aloop pcm_substreams=1

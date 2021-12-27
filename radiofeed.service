@@ -1,0 +1,15 @@
+[Unit]
+Description=Radiofeed transmitter
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+Restart=on-failure
+RestartSec=5s
+
+ExecStart=python3 /opt/radiofeed/radiofeed
+
+[Install]
+WantedBy=multi-user.target

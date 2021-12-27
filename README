@@ -1,0 +1,36 @@
+Create following dirs
+
+```
+mkdir ~/.radiofeed/gifs
+mkdir ~/.radiofeed/music
+```
+Install nginx
+
+```
+apt-get install nginx nginx-plus-module-rtmp
+
+echo "load_module modules/ngx_rtmp_module.so;" >> /etc/nginx/nginx.conf
+```
+
+Copy .hls, rtmp.conf and nginx-site
+
+```
+cp .hls ~/ -r
+cp radio /etc/nginx/sites-available/radio
+cp rtmp.conf /etc/nginx/
+```
+
+# Enable loopback device on boot
+
+cat modules >> /etc/modules
+
+# Enable loopback device as default
+
+cat asound.conf >> /etc/asound.conf
+
+# Enable service
+
+cp radiofeed.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable radiofeed.service
+systemctl start radiofeed.service
