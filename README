@@ -16,7 +16,7 @@ Copy .hls, rtmp.conf and nginx-site
 
 ```
 cp .hls ~/ -r
-cp radio /etc/nginx/sites-available/radio
+cp nginxradio /etc/nginx/sites-available/radio
 cp rtmp.conf /etc/nginx/
 ```
 

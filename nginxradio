@@ -1,0 +1,38 @@
+server {
+
+	root /home/loidor/.hls;
+
+	index index.html;
+
+	server_name radio.loidor.com;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+    location = /robots.txt {
+        add_header  Content-Type  text/plain;
+        return 200 "User-agent: *\nDisallow: /\n";
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/calendar.loidor.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/calendar.loidor.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = radio.loidor.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+
+	server_name radio.loidor.com;
+    listen 80;
+    return 404; # managed by Certbot
+
+
+}

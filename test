@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+
+thelist = ['first', 'second',
+           'third']
+
+print(thelist)
